@@ -15,6 +15,10 @@ class Cart:
         print("The disc has been added")
         return True
 
+    def is_empty(self):
+        if len(self.items) == 0:
+            print("The cart is empty")
+
     def remove_dvd(self, dvd):
         if dvd in self.items:
             self.items.remove(dvd)

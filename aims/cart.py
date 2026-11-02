@@ -17,7 +17,9 @@ class Cart:
 
     def is_empty(self):
         if len(self.items) == 0:
-            print("The cart is empty")
+            return True
+        else:
+            return False
 
     def remove_dvd(self, dvd):
         if dvd in self.items:

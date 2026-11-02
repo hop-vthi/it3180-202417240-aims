@@ -7,7 +7,7 @@ def main():
     cart.add_dvd(DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95))
     cart.add_dvd(DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95))
     cart.add_dvd(DigitalVideoDisc("Aladdin", "Animation", cost=18.99))
-    if cart.is_empty:
+    if cart.is_empty():
         print("The cart is empty.")
     else:
         cart.print_cart()

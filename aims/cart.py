@@ -15,6 +15,10 @@ class Cart:
         print("The disc has been added")
         return True
 
+    def is_empty(self):
+        if len(self.items) == 0:
+            print("The cart is empty")
+
     def remove_dvd(self, dvd):
         if dvd in self.items:
             self.items.remove(dvd)
@@ -25,3 +29,11 @@ class Cart:
 
     def total_cost(self):
         return sum(item.cost for item in self.items)
+
+    def print_cart(self):
+        print("***********************CART***********************")
+        print("Ordered Items:")
+        for index, dvd in enumerate(self.items, start=1):
+            print(f"{index}. {dvd}")
+        print(f"Total cost: {self.total_cost():.2f} $")
+        print("**************************************************")

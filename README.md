@@ -4,3 +4,6 @@
 
 - Sinh viên: Vu Thi Hop – MSSV 202417240
 - Chạy chương trình: `python main.py`
+
+## requirements 
+- Python 3.10+

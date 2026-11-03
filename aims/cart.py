@@ -32,10 +32,14 @@ class Cart:
     def total_cost(self):
         return sum(item.cost for item in self.items)
 
-    def print_cart(self):
+    def discount(self, percent):
+        return (self.total_cost)*percent/100
+
+    def print_cart(self, percent):
         print("***********************CART***********************")
         print("Ordered Items:")
         for index, dvd in enumerate(self.items, start=1):
             print(f"{index}. {dvd}")
         print(f"Total cost: {self.total_cost():.2f} $")
+        print(f"Total cost after discount: {self.discount(percent):.2f} $")
         print("**************************************************")

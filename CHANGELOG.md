@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [1.0.1] - 2026-11-04
+
+### Fixed
+- Provide a default discount percentage when printing the cart.
+
 ## [1.1.0] - 2026-11-03
 
 ### Added

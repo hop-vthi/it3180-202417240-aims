@@ -1,8 +1,11 @@
 ## [Unreleased]
 
+## [1.1.0] - 2026-11-03
+
 ### Added
 - Add DVD sorting by title (`sort_by_title`).
 - Add DVD sorting by cost (`sort_by_cost`).
+- Add DVD search by category (`search_by_category`).
 
 ## [1.0.0] - 2026-11-03
 

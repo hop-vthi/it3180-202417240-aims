@@ -1,3 +1,5 @@
+import contextlib
+import io
 import unittest
 
 from aims.cart import Cart
@@ -70,6 +72,23 @@ class TestCart(unittest.TestCase):
         cart.sort_by_cost()
         self.assertEqual(cart.items, [])
 
+    def test_print_cart_default_percent(self):
+        cart = Cart()
+        cart.add_dvd(DigitalVideoDisc("The Lion King", cost=100.0))
+        with io.StringIO() as output, contextlib.redirect_stdout(output):
+            cart.print_cart()
+            printed = output.getvalue()
+        self.assertIn("Total cost: 100.00 $", printed)
+        self.assertIn("Total cost after discount: 100.00 $", printed)
+
+    def test_print_cart_with_discount_percent(self):
+        cart = Cart()
+        cart.add_dvd(DigitalVideoDisc("The Lion King", cost=100.0))
+        with io.StringIO() as output, contextlib.redirect_stdout(output):
+            cart.print_cart(20)
+            printed = output.getvalue()
+        self.assertIn("Total cost: 100.00 $", printed)
+        self.assertIn("Total cost after discount: 80.00 $", printed)
 
 if __name__ == "__main__":
     unittest.main()

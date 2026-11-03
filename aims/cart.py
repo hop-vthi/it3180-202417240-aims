@@ -37,6 +37,16 @@ class Cart:
             raise ValueError("Discount percent must be between 0 and 100")
         return self.total_cost() * (1 - percent / 100)
 
+    def sort_by_title(self):
+        """Sắp xếp đĩa DVD trong giỏ hàng theo tiêu đề (A-Z). Nếu trùng tiêu đề thì sắp xếp theo giá giảm dần."""
+        self.items.sort(key=lambda dvd: (dvd.title.lower() if dvd.title else "", -dvd.cost, dvd.title or ""))
+        return self.items
+
+    def sort_by_cost(self):
+        """Sắp xếp đĩa DVD trong giỏ hàng theo giá giảm dần. Nếu trùng giá thì sắp xếp theo tiêu đề (A-Z)."""
+        self.items.sort(key=lambda dvd: (-dvd.cost, dvd.title.lower() if dvd.title else "", dvd.title or ""))
+        return self.items
+
     def print_cart(self, percent):
         print("***********************CART***********************")
         print("Ordered Items:")

@@ -19,6 +19,57 @@ class TestCart(unittest.TestCase):
         self.assertEqual(len(cart.items), 20)
         self.assertNotIn(extra_disc, cart.items)
 
+    def test_sort_by_title(self):
+        cart = Cart()
+        dvd1 = DigitalVideoDisc("The Lion King", cost=19.95)
+        dvd2 = DigitalVideoDisc("Star Wars", cost=24.95)
+        dvd3 = DigitalVideoDisc("Aladdin", cost=18.99)
+        cart.add_dvd(dvd1)
+        cart.add_dvd(dvd2)
+        cart.add_dvd(dvd3)
+
+        cart.sort_by_title()
+        self.assertEqual([dvd.title for dvd in cart.items], ["Aladdin", "Star Wars", "The Lion King"])
+
+    def test_sort_by_title_same_title_higher_cost_first(self):
+        cart = Cart()
+        dvd1 = DigitalVideoDisc("Aladdin", cost=15.00)
+        dvd2 = DigitalVideoDisc("Aladdin", cost=25.00)
+        cart.add_dvd(dvd1)
+        cart.add_dvd(dvd2)
+
+        cart.sort_by_title()
+        self.assertEqual(cart.items, [dvd2, dvd1])
+
+    def test_sort_by_cost(self):
+        cart = Cart()
+        dvd1 = DigitalVideoDisc("Aladdin", cost=18.99)
+        dvd2 = DigitalVideoDisc("Star Wars", cost=24.95)
+        dvd3 = DigitalVideoDisc("The Lion King", cost=19.95)
+        cart.add_dvd(dvd1)
+        cart.add_dvd(dvd2)
+        cart.add_dvd(dvd3)
+
+        cart.sort_by_cost()
+        self.assertEqual([dvd.cost for dvd in cart.items], [24.95, 19.95, 18.99])
+
+    def test_sort_by_cost_same_cost_alphabetical_title(self):
+        cart = Cart()
+        dvd1 = DigitalVideoDisc("Star Wars", cost=20.00)
+        dvd2 = DigitalVideoDisc("Aladdin", cost=20.00)
+        cart.add_dvd(dvd1)
+        cart.add_dvd(dvd2)
+
+        cart.sort_by_cost()
+        self.assertEqual(cart.items, [dvd2, dvd1])
+
+    def test_sort_empty_cart(self):
+        cart = Cart()
+        cart.sort_by_title()
+        self.assertEqual(cart.items, [])
+        cart.sort_by_cost()
+        self.assertEqual(cart.items, [])
+
 
 if __name__ == "__main__":
     unittest.main()

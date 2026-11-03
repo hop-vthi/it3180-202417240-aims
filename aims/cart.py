@@ -47,7 +47,7 @@ class Cart:
         self.items.sort(key=lambda dvd: (-dvd.cost, dvd.title.lower() if dvd.title else "", dvd.title or ""))
         return self.items
 
-    def print_cart(self, percent):
+    def print_cart(self, percent=0):
         print("***********************CART***********************")
         print("Ordered Items:")
         for index, dvd in enumerate(self.items, start=1):
